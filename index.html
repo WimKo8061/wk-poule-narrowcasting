@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal T Shipyards - WK Poule</title>
+
+    <!-- Refresh elke minuut -->
+    <meta http-equiv="refresh" content="60">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #0a1f5c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 40px 20px;
+        }
+
+        .logo {
+            max-width: 800px;
+            width: 70%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        main {
+            flex: 1;
+            padding: 0 40px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .widget-card {
+            width: 100%;
+            max-width: 1500px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            color: black;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+        }
+
+        .ranking-widget-footer {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: rgba(255,255,255,0.7);
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <!-- Plaats hier het logo-bestand -->
+    <img src="logo.png"
+         alt="Royal T Shipyards"
+         class="logo">
+
+    <h1>WK Poule Ranglijst</h1>
+</header>
+
+<main>
+    <div class="widget-card">
+
+        <!-- Begin ranking widget WKPooltjes -->
+        <div class="ranking-widget">
+            <div class="ranking-widget-fetch-area">
+                <script>
+                    fetch('https://www.wkpooltjes.nl/rankingpoolwidget/927ef831e8bc4dde4fa25f45f2e886e7/127/')
+                        .then((r) => r.text())
+                        .then((h) => {
+                            document.querySelector('.ranking-widget-fetch-area').innerHTML = h;
+                        })
+                        .catch((e) => {
+                            document.querySelector('.ranking-widget-fetch-area').innerHTML =
+                                '<p style="font-size:28px;text-align:center;">De ranglijst kon niet worden geladen.</p>';
+                        });
+                </script>
+            </div>
+
+            <div class="ranking-widget-footer"
+                 style="display:flex;align-items:center;justify-content:flex-end;font-size:12px;color:#999;">
+                Ranglijst mogelijk gemaakt door
+                <a href="https://www.wkpooltjes.nl"
+                   target="_blank"
+                   rel="noopener"
+                   style="color:#999;text-decoration:none;display:flex;align-items:center;">
+                    <img src="https://cdn01.wkpooltjes.nl/gfx/core/logo-branding-wkpooltjes.png"
+                         height="16"
+                         style="margin:0 5px;">
+                    dé wk poule engine
+                </a>
+            </div>
+        </div>
+        <!-- End ranking widget WKPooltjes -->
+
+    </div>
+</main>
+
+<footer>
+    Royal T Shipyards • Automatische update iedere minuut
+</footer>
+
+</body>
+</html>
